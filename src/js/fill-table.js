@@ -1,5 +1,4 @@
-export const addBook = (table, books) => {
-    
+export const buildTable = (table, books) => {
     books.forEach(book => {
         const newBook = document.createElement('tr')
         const titleCell = document.createElement('td')

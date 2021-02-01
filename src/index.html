@@ -46,20 +46,20 @@
     </table>
 
     <hr />
-    <form>
+    <form class="form">
       <div class="form-outline form__outline">
-        <input type="text" id="title" name="title" class="form-control" />
+        <input type="text" id="title" name="title" class="form-control form__title" />
         <label class="form-label form__label" for="title">Tytuł</label>
       </div>
 
       <div class="form-outline form__outline">
-        <input type="text" id="author" name="author" class="form-control" />
+        <input type="text" id="author" name="author" class="form-control form__author" />
         <label class="form-label form__label" for="author">Autor</label>
       </div>
 
       <div class="form__outline">
         <label class="form-label form__label" for="category">Kategoria</label>
-        <select class="form-select" name="category" id="category">
+        <select class="form-select form__category" name="category" id="category">
           <option value="criminal" disabled selected>Kategoria  </option>
           <option value="criminal">Kryminał</option>
           <option value="science">Nauki ścisłe</option>
@@ -72,7 +72,7 @@
      
       <div class="form__outline">
         <label class="form-label form__label" for="priority">Priorytet</label>
-        <select class="form-select" name="priority" id="priority">
+        <select class="form-select form__priority" name="priority" id="priority">
           <option value="criminal" disabled selected>Priorytet</option>
           <option value="1">1</option>
           <option value="2">2</option>

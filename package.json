@@ -1,5 +1,5 @@
 {
-  "name": "mdb-webpack-starter",
+  "name": "booklist",
   "version": "3.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack/webpack.config.dev.js --open",

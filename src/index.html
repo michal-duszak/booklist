@@ -37,12 +37,56 @@
         <tr>
           <td class="book-title">Antychryst</td>
           <td>
-            Friedrich Nietzsche</td>
+            Friedrich Nietzsche
+          </td>
           <td>Krytyka</td>
           <td>5</td>
         </tr>
       </tbody>
     </table>
+
+    <hr />
+    <form>
+      <div class="form-outline form__outline">
+        <input type="text" id="title" name="title" class="form-control" />
+        <label class="form-label form__label" for="title">Tytuł</label>
+      </div>
+
+      <div class="form-outline form__outline">
+        <input type="text" id="author" name="author" class="form-control" />
+        <label class="form-label form__label" for="author">Autor</label>
+      </div>
+
+      <div class="form__outline">
+        <label class="form-label form__label" for="category">Kategoria</label>
+        <select class="form-select" name="category" id="category">
+          <option value="criminal" disabled selected>Kategoria  </option>
+          <option value="criminal">Kryminał</option>
+          <option value="science">Nauki ścisłe</option>
+          <option value="drama">Dramat</option>
+          <option value="poetry">Poezja</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="scifi">Sci-fi</option>
+        </select>
+      </div>
+     
+      <div class="form__outline">
+        <label class="form-label form__label" for="priority">Priorytet</label>
+        <select class="form-select" name="priority" id="priority">
+          <option value="criminal" disabled selected>Priorytet</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+
+        </select>
+      </div>
+     
+      
+    </div>
+    <input type="submit" value="Dodaj" class="form__submit"> 
+    </form>
   </body>
   <!-- Main js file -->
   <script type="text/javascript" src="js/index.min.js"></script>

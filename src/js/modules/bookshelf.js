@@ -12,7 +12,9 @@ export default class Bookshelf {
           <td>${book.category}</td>
           <td>${book.priority}</td>
           <td><div class="actions">
+          <button type="button" class="btn btn-floating">
             <i class="fas fa-trash delete"></i>
+            </button>
           </div>
         </td>
         </tr>`
@@ -21,7 +23,7 @@ export default class Bookshelf {
   }
   addBook(book) {
     this.table.insertAdjacentHTML(
-        'afterend',
+        'beforeend',
         `<tr>
           <td class="book-title">${book.title}</td>
           <td>${book.author}</td>

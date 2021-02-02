@@ -1,5 +1,16 @@
+const addActionTab = (newBook) => {
+    const actionsCell = document.createElement('td')
+    const actionsCellDiv = document.createElement('div')
+    actionsCellDiv.classList.add("actions")
+    const trashIconEl = document.createElement("i")
+    trashIconEl.classList.add("fas", "fa-trash", "delete")
+    actionsCellDiv.appendChild(trashIconEl)
+    actionsCell.appendChild(actionsCellDiv)
+    newBook.appendChild(actionsCell)
+}
 export const buildTable = (table, books) => {
     books.forEach(book => {
+        console.log(book)
         const newBook = document.createElement('tr')
         const titleCell = document.createElement('td')
         titleCell.innerText = book.title
@@ -13,14 +24,7 @@ export const buildTable = (table, books) => {
         const priorityCell = document.createElement('td')
         priorityCell.innerText = book.priority
         newBook.appendChild(priorityCell)
-        const actionsCell = document.createElement('td')
-        const actionsCellDiv = document.createElement('div')
-        actionsCellDiv.classList.add("actions")
-        const trashIconEl = document.createElement("i")
-        trashIconEl.classList.add("fas", "fa-trash")
-        actionsCellDiv.appendChild(trashIconEl)
-        actionsCell.appendChild(actionsCellDiv)
-        newBook.appendChild(actionsCell)
+        addActionTab(newBook)
         table.appendChild(newBook)
     })
 }
@@ -39,5 +43,6 @@ export const buildNewBook = (table, book) => {
         const priorityCell = document.createElement('td')
         priorityCell.innerText = book.priority
         newBook.appendChild(priorityCell)
+        addActionTab(newBook)
         table.appendChild(newBook)
 }

@@ -1,48 +1,25 @@
-const addActionTab = (newBook) => {
-    const actionsCell = document.createElement('td')
-    const actionsCellDiv = document.createElement('div')
-    actionsCellDiv.classList.add("actions")
-    const trashIconEl = document.createElement("i")
-    trashIconEl.classList.add("fas", "fa-trash", "delete")
-    actionsCellDiv.appendChild(trashIconEl)
-    actionsCell.appendChild(actionsCellDiv)
-    newBook.appendChild(actionsCell)
-}
+const newBook = (book) => {
+  return `<tr>
+    <td class="book-title">${book.title}</td>
+    <td>
+      ${book.author}
+    </td>
+    <td>${book.category}</td>
+    <td>${book.priority}</td>
+    <td><div class="actions">
+      <i class="fas fa-trash delete"></i>
+    </div>
+  </td>
+  </tr>`;
+};
 export const buildTable = (table, books) => {
-    books.forEach(book => {
-        console.log(book)
-        const newBook = document.createElement('tr')
-        const titleCell = document.createElement('td')
-        titleCell.innerText = book.title
-        newBook.appendChild(titleCell)
-        const authorCell = document.createElement('td')
-        authorCell.innerText = book.author
-        newBook.appendChild(authorCell)
-        const categoryCell = document.createElement('td')
-        categoryCell.innerText = book.category
-        newBook.appendChild(categoryCell)
-        const priorityCell = document.createElement('td')
-        priorityCell.innerText = book.priority
-        newBook.appendChild(priorityCell)
-        addActionTab(newBook)
-        table.appendChild(newBook)
-    })
-}
+  books.forEach((book) => {
+    console.log(book);
+    newBook(book);
+    table.insertAdjacentHTML('afterend', newBook(book));
+  });
+};
 
-export const buildNewBook = (table, book) => {
-    const newBook = document.createElement('tr')
-        const titleCell = document.createElement('td')
-        titleCell.innerText = book.title
-        newBook.appendChild(titleCell)
-        const authorCell = document.createElement('td')
-        authorCell.innerText = book.author
-        newBook.appendChild(authorCell)
-        const categoryCell = document.createElement('td')
-        categoryCell.innerText = book.category
-        newBook.appendChild(categoryCell)
-        const priorityCell = document.createElement('td')
-        priorityCell.innerText = book.priority
-        newBook.appendChild(priorityCell)
-        addActionTab(newBook)
-        table.appendChild(newBook)
-}
+export const buildNewBook = (bookshelf, book) => {
+  bookshelf.insertAdjacentHTML('afterend', newBook(book));
+};

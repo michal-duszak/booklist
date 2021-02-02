@@ -13,6 +13,14 @@ export const buildTable = (table, books) => {
         const priorityCell = document.createElement('td')
         priorityCell.innerText = book.priority
         newBook.appendChild(priorityCell)
+        const actionsCell = document.createElement('td')
+        const actionsCellDiv = document.createElement('div')
+        actionsCellDiv.classList.add("actions")
+        const trashIconEl = document.createElement("i")
+        trashIconEl.classList.add("fas", "fa-trash")
+        actionsCellDiv.appendChild(trashIconEl)
+        actionsCell.appendChild(actionsCellDiv)
+        newBook.appendChild(actionsCell)
         table.appendChild(newBook)
     })
 }

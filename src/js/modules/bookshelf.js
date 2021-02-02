@@ -30,7 +30,9 @@ export default class Bookshelf {
           <td>${book.category}</td>
           <td>${book.priority}</td>
           <td><div class="actions">
+          <button type="button" class="btn btn-floating">
             <i class="fas fa-trash delete"></i>
+            </button>
           </div>
         </td>
         </tr>`

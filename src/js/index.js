@@ -2,6 +2,9 @@ import * as mdb from 'mdb-ui-kit';
 import { initialData } from '../data/initialData';
 import { buildNewBook, buildTable } from '../js/fill-table';
 import { addBook } from '../js/add-book';
+import Bookshelf from "./modules/bookshelf";
+const bookshelf = new Bookshelf(initialData);
+bookshelf.insertBooks()
 const tableBody = document.querySelector(".table-body");
 const addBookForm = document.querySelector(".form");
 addBookForm.addEventListener('submit', (e) => {
@@ -9,7 +12,6 @@ addBookForm.addEventListener('submit', (e) => {
   buildNewBook(tableBody, addBook())
   addBookForm.reset()
 })
-buildTable(tableBody, initialData)
 
 export default {
   mdb,

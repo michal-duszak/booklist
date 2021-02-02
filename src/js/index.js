@@ -4,8 +4,9 @@ import Bookshelf from "./modules/bookshelf";
 import Bookform from "./modules/bookform";
 ///INIT
 const bookshelf = new Bookshelf(initialData);
-bookshelf.insertBooks();
 const bookform = new Bookform();
+
+bookshelf.insertBooks();
 bookform.submitBook(bookshelf);
 ///
 export default {

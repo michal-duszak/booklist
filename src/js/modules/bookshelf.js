@@ -5,7 +5,7 @@ export default class Bookshelf {
   insertBooks() {
     this.books.forEach((book) => {
       this.table.insertAdjacentHTML(
-        'afterend',
+        'beforeend',
         `<tr data-id="${book._id}">
           <td class="book-title">${book.title}</td>
           <td>${book.author}</td>
@@ -24,7 +24,7 @@ export default class Bookshelf {
   addBook(book) {
     this.table.insertAdjacentHTML(
         'beforeend',
-        `<tr>
+        `<tr data-id="${book._id}">
           <td class="book-title">${book.title}</td>
           <td>${book.author}</td>
           <td>${book.category}</td>
@@ -39,7 +39,9 @@ export default class Bookshelf {
       ); 
   }
   deleteBook(bookId) {
+    const bookOnShelf = document.querySelector(`tr[data-id="${bookId}"]`);
     const ind = this.books.findIndex(x => x._id == bookId);
+    (bookOnShelf) ? this.table.removeChild(bookOnShelf) : "";
     (ind != -1) ? this.books.splice(ind, 1) : "";
     console.log(this.books)
   }

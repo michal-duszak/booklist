@@ -3,16 +3,18 @@ import { initialData } from '../data/initialData';
 import Bookshelf from "./modules/bookshelf";
 import Bookform from "./modules/bookform";
 const form = document.querySelector('.form');
+const counter = document.querySelector('.counter');
 ///INIT
 const bookshelf = new Bookshelf(initialData);
 const bookform = new Bookform();
 bookshelf.insertBooks();
-const deleteButtons = document.querySelectorAll('.delete');
+counter.textContent = bookshelf.books.length;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   bookshelf.addBook(bookform.getNewBookData());
-  // deleteButtons = document.querySelectorAll('.delete');
+  counter.textContent = bookshelf.books.length;
+  console.log(bookshelf.books)
   form.reset();
 })
 

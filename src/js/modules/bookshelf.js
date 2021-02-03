@@ -1,6 +1,8 @@
 export default class Bookshelf {
   constructor(data = {}) {
-    (this.table = document.querySelector('.table-body')), (this.books = data);
+    (this.table = document.querySelector('.table-body')),
+      (this.books = data),
+      (this.counter = document.querySelector('.counter'));
   }
   insertBooks() {
     this.books.forEach((book) => {
@@ -15,7 +17,7 @@ export default class Bookshelf {
   }
   addBook(book) {
     const newBook = document.createElement('tr');
-    newBook.setAttribute("data-id", book._id);
+    newBook.setAttribute('data-id', book._id);
     newBook.insertAdjacentHTML(
       'beforeend',
       `<td class="book-title">${book.title}</td>
@@ -29,8 +31,13 @@ export default class Bookshelf {
           </div>
         </td>`
     );
-    const deleteButton =  newBook.querySelector(`button[data-id="${book._id}"]`);
+    const deleteButton = newBook.querySelector(`button[data-id="${book._id}"]`);
     this.addDeleteListener(deleteButton);
+    if (!this.books.find((b) => b._id == book._id)) {
+      this.books = [...this.books, book];
+      localStorage.setItem("data", JSON.stringify(this.books));
+    }
+    this.counter.textContent = this.books.length;
     this.table.appendChild(newBook);
   }
   deleteBook(bookId) {
@@ -38,6 +45,7 @@ export default class Bookshelf {
     const ind = this.books.findIndex((x) => x._id == bookId);
     bookOnShelf ? this.table.removeChild(bookOnShelf) : '';
     ind != -1 ? this.books.splice(ind, 1) : '';
-
+    this.counter.textContent = this.books.length;
+    localStorage.setItem("data", JSON.stringify(this.books));
   }
 }

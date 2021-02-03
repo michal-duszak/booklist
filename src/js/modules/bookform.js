@@ -4,14 +4,19 @@ export default class Bookform {
     this.author;
     this.category;
     this.priority;
+    this.id = 10;
     this.tableBody = document.querySelector('.table-body')
   }
   getNewBookData() {
       const newBook = {};
+      this.id = this.id + 1;
+      newBook._id = this.id; 
       newBook.title = document.querySelector('.form__title').value;
       newBook.author = document.querySelector('.form__author').value;
       newBook.category = document.querySelector('.form__category').value;
       newBook.priority = document.querySelector('.form__priority').value;
+      console.log(newBook)
+
       return newBook;
   }
 }

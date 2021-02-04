@@ -45,7 +45,73 @@ export default class Bookshelf {
     const ind = this.books.findIndex((x) => x._id == bookId);
     bookOnShelf ? this.table.removeChild(bookOnShelf) : '';
     ind != -1 ? this.books.splice(ind, 1) : '';
-    this.counter.textContent = this.books.length;
+      this.counter.textContent = this.books.length;
     localStorage.setItem("data", JSON.stringify(this.books));
+  }
+  clearShelf() {
+    this.table.innerHTML = "";
+  }
+  sortByTitle() {
+    if(document.querySelector('th[data-sort=title]').getAttribute('sorted')) {
+    this.books.sort((a,b) => 
+    (a.title > b.title) ? -1 : 
+    ((b.title > a.title) ? 1 : 
+    0))
+    document.querySelector('th[data-sort=title]').removeAttribute("sorted")
+    } else {
+    document.querySelector('th[data-sort=title]').setAttribute("sorted", "sorted")
+    this.books.sort((a,b) => 
+    (a.title > b.title) ? 1 : 
+    ((b.title > a.title) ? -1 : 
+    0))
+    }
+
+  }
+  sortByAuthor() {
+    if(document.querySelector('th[data-sort=author]').getAttribute('sorted')) {
+    this.books.sort((a,b) => 
+    (a.author > b.author) ? -1 : 
+    ((b.author > a.author) ? 1 : 
+    0))
+    document.querySelector('th[data-sort=author]').removeAttribute("sorted")
+    } else {
+    document.querySelector('th[data-sort=author]').setAttribute("sorted", "sorted")
+    this.books.sort((a,b) => 
+    (a.author > b.author) ? 1 : 
+    ((b.author > a.author) ? -1 : 
+    0))
+    }
+
+  }
+  sortByCategory() {
+    if(document.querySelector('th[data-sort=category]').getAttribute('sorted')) {
+    this.books.sort((a,b) => 
+    (a.category > b.category) ? -1 : 
+    ((b.category > a.category) ? 1 : 
+    0))
+    document.querySelector('th[data-sort=category]').removeAttribute("sorted")
+    } else {
+    document.querySelector('th[data-sort=category]').setAttribute("sorted", "sorted")
+    this.books.sort((a,b) => 
+    (a.category > b.category) ? 1 : 
+    ((b.category > a.category) ? -1 : 
+    0))
+    }
+  }
+  sortByPriority() {
+    if(document.querySelector('th[data-sort=priority]').getAttribute('sorted')) {
+    this.books.sort((a,b) => 
+    (a.priority > b.priority) ? -1 : 
+    ((b.priority > a.priority) ? 1 : 
+    0))
+    document.querySelector('th[data-sort=priority]').removeAttribute("sorted")
+    } else {
+    document.querySelector('th[data-sort=priority]').setAttribute("sorted", "sorted")
+    this.books.sort((a,b) => 
+    (a.priority > b.priority) ? 1 : 
+    ((b.priority > a.priority) ? -1 : 
+    0))
+    }
+
   }
 }

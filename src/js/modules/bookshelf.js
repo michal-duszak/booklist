@@ -1,8 +1,37 @@
 export default class Bookshelf {
   constructor(data = {}) {
-    (this.table = document.querySelector('.table-body')),
+      this.table = document.querySelector('.table-body'),
       (this.books = data),
+      (this.counterAuthors = document.querySelector('.counter-authors'));
+      (this.counterCategories = document.querySelector('.counter-categories'));
       (this.counter = document.querySelector('.counter'));
+      (this.authors = []);
+      (this.categories = [
+        {
+          name: "Kryminał",
+          count: 0,
+      },
+      {
+          name: "Nauki ścisłe",
+          count: 0,
+      },
+      {
+          name: "Dramat",
+          count: 0,
+      },
+      {
+          name: "Poezja",
+          count: 0,
+      },
+      {
+          name: "Fantasy",
+          count: 0,
+      },
+      {
+          name: "Sci-fi",
+          count: 0,
+      },
+      ]);
   }
   insertBooks() {
     this.books.forEach((book) => {
@@ -37,6 +66,10 @@ export default class Bookshelf {
       this.books = [...this.books, book];
       localStorage.setItem("data", JSON.stringify(this.books));
     }
+    this.updateAuthors();
+    this.updateCategories()
+    this.counterAuthors.textContent = this.authors.length;
+    this.counterCategories.textContent = this.categories.length;
     this.counter.textContent = this.books.length;
     this.table.appendChild(newBook);
   }
@@ -112,6 +145,20 @@ export default class Bookshelf {
     ((b.priority > a.priority) ? -1 : 
     0))
     }
-
+  }
+  updateCategories() {
+    this.categories.forEach(x => x.count = 0)
+    this.books.forEach(x => {
+      if (this.categories.find((c) => c.name == x.category)) {
+        this.categories.find((c) => c.name == x.category).count = this.categories.find((c) => c.name == x.category).count + 1;
+      }
+      console.log(this.categories.find((c) => c.name == x.category));
+      });
+    // this.categories = Object.keys(tempCategories);
+  }
+  updateAuthors() {
+    const tempAuthors = {};
+    this.books.forEach(x => tempAuthors[x.author] = 1);
+    this.authors = Object.keys(tempAuthors)
   }
 }

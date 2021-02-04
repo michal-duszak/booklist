@@ -12,7 +12,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged && jest"
     }
   },
   "lint-staged": {

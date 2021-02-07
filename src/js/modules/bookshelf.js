@@ -2,7 +2,7 @@ export default class Bookshelf {
   constructor(data = {}) {
       this.table = document.querySelector('.table-body'),
       (this.books = data),
-      (this.filteredBooks = []),
+      (this.filteredBooks = this.books),
       (this.counter = document.querySelectorAll('.counter')),
       (this.authors = []),
       (this.categories = [
@@ -32,7 +32,7 @@ export default class Bookshelf {
       },
       ]);
   }
-  insertBooks(books = this.books) {
+  insertBooks(books = this.filteredBooks) {
     this.clearShelf();
     books.forEach((book) => {
       this.addBook(book);
@@ -66,6 +66,11 @@ export default class Bookshelf {
       this.books = [...this.books, book];
       localStorage.setItem("data", JSON.stringify(this.books));
     }
+      
+    if(this.filteredBooks[0].category == book.category) {
+        this.filteredBooks = this.filterByCategory(book.category);
+
+    }
     this.updateAuthors();
     this.updateCategories();
     this.counter.forEach(x => x.textContent = this.books.length);
@@ -86,14 +91,14 @@ export default class Bookshelf {
   }
   sortByTitle() {
     if(document.querySelector('th[data-sort=title]').getAttribute('sorted')) {
-    this.books.sort((a,b) => 
+    this.filteredBooks.sort((a,b) => 
     (a.title > b.title) ? -1 : 
     ((b.title > a.title) ? 1 : 
     0))
     document.querySelector('th[data-sort=title]').removeAttribute("sorted")
     } else {
     document.querySelector('th[data-sort=title]').setAttribute("sorted", "sorted")
-    this.books.sort((a,b) => 
+    this.filteredBooks.sort((a,b) => 
     (a.title > b.title) ? 1 : 
     ((b.title > a.title) ? -1 : 
     0))
@@ -102,14 +107,14 @@ export default class Bookshelf {
   }
   sortByAuthor() {
     if(document.querySelector('th[data-sort=author]').getAttribute('sorted')) {
-    this.books.sort((a,b) => 
+    this.filteredBooks.sort((a,b) => 
     (a.author > b.author) ? -1 : 
     ((b.author > a.author) ? 1 : 
     0))
     document.querySelector('th[data-sort=author]').removeAttribute("sorted")
     } else {
     document.querySelector('th[data-sort=author]').setAttribute("sorted", "sorted")
-    this.books.sort((a,b) => 
+    this.filteredBooks.sort((a,b) => 
     (a.author > b.author) ? 1 : 
     ((b.author > a.author) ? -1 : 
     0))
@@ -118,14 +123,14 @@ export default class Bookshelf {
   }
   sortByCategory() {
     if(document.querySelector('th[data-sort=category]').getAttribute('sorted')) {
-    this.books.sort((a,b) => 
+    this.filteredBooks.sort((a,b) => 
     (a.category > b.category) ? -1 : 
     ((b.category > a.category) ? 1 : 
     0))
     document.querySelector('th[data-sort=category]').removeAttribute("sorted")
     } else {
     document.querySelector('th[data-sort=category]').setAttribute("sorted", "sorted")
-    this.books.sort((a,b) => 
+    this.filteredBooks.sort((a,b) => 
     (a.category > b.category) ? 1 : 
     ((b.category > a.category) ? -1 : 
     0))
@@ -133,14 +138,14 @@ export default class Bookshelf {
   }
   sortByPriority() {
     if(document.querySelector('th[data-sort=priority]').getAttribute('sorted')) {
-    this.books.sort((a,b) => 
+    this.filteredBooks.sort((a,b) => 
     (a.priority > b.priority) ? -1 : 
     ((b.priority > a.priority) ? 1 : 
     0))
     document.querySelector('th[data-sort=priority]').removeAttribute("sorted")
     } else {
     document.querySelector('th[data-sort=priority]').setAttribute("sorted", "sorted")
-    this.books.sort((a,b) => 
+    this.filteredBooks.sort((a,b) => 
     (a.priority > b.priority) ? 1 : 
     ((b.priority > a.priority) ? -1 : 
     0))
@@ -185,7 +190,6 @@ export default class Bookshelf {
     categories.forEach(x => {
       x.addEventListener('click', (e) => {
         this.filteredBooks = this.filterByCategory(x.getAttribute("data-category"));
-        console.log(this.filteredBooks) 
         this.insertBooks(this.filteredBooks);
       })
     })

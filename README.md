@@ -20,3 +20,5 @@ npm start
 npm run build
 ```
 
+# LIVE 
+https://infallible-goodall-f57121.netlify.app/

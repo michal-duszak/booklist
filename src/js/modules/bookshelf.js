@@ -198,5 +198,11 @@ export default class Bookshelf {
     const filtered = this.books.filter(book => book.category == category);
     return filtered;
   }
+  handleShowAllCategories() {
+    document.querySelector(".sidebar-categories--show").addEventListener("click", () => {
+      this.filteredBooks = this.books;
+      this.insertBooks();
+    })
+  }
 
 }

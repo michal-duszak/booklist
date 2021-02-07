@@ -47,6 +47,7 @@ bookshelf.clearShelf();
 bookshelf.sortByPriority();
 bookshelf.insertBooks();
 })
+bookshelf.handleShowAllCategories()
 bookshelf.handleCategoriesListToggle();
 
 export default {

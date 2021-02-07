@@ -2,9 +2,9 @@ export default class Bookshelf {
   constructor(data = {}) {
       this.table = document.querySelector('.table-body'),
       (this.books = data),
-      (this.counterAuthors = document.querySelector('.counter-authors')),
+      (this.filteredBooks = []),
       (this.counter = document.querySelectorAll('.counter')),
-      (this.authors = []);
+      (this.authors = []),
       (this.categories = [
         {
           name: "Kryminał",
@@ -32,8 +32,9 @@ export default class Bookshelf {
       },
       ]);
   }
-  insertBooks() {
-    this.books.forEach((book) => {
+  insertBooks(books = this.books) {
+    this.clearShelf();
+    books.forEach((book) => {
       this.addBook(book);
     });
   }
@@ -67,7 +68,6 @@ export default class Bookshelf {
     }
     this.updateAuthors();
     this.updateCategories();
-    this.counterAuthors.textContent = this.authors.length;
     this.counter.forEach(x => x.textContent = this.books.length);
     this.table.appendChild(newBook);
   }
@@ -158,6 +158,8 @@ export default class Bookshelf {
       });
       this.categories.forEach(x => {
       this.addCategoryToList(x);
+      this.handleCategoryFilter();
+
     })
   }
   updateAuthors() {
@@ -168,7 +170,7 @@ export default class Bookshelf {
   }
   addCategoryToList(category) {
   const el = document.createElement('li');
-  el.classList.add("list-group-item", "list-group-item-action");
+  el.classList.add("list-group-item", "list-group-item-action", "category-filter");
   el.setAttribute("data-category", category.name);
   el.innerText = `${category.name}: ${category.count} pozycji`;
   document.querySelector(".categories-list").appendChild(el);
@@ -178,11 +180,19 @@ export default class Bookshelf {
       document.querySelector(".categories-list").classList.toggle("hidden");
     })
   }
+  handleCategoryFilter() {
+    const categories = document.querySelectorAll(`.category-filter`);
+    categories.forEach(x => {
+      x.addEventListener('click', (e) => {
+        this.filteredBooks = this.filterByCategory(x.getAttribute("data-category"));
+        console.log(this.filteredBooks) 
+        this.insertBooks(this.filteredBooks);
+      })
+    })
+  }
   filterByCategory(category) {
     const filtered = this.books.filter(book => book.category == category);
-    console.log(filtered);
+    return filtered;
   }
-  handleFilter() {
-    document.querySelector("")
-  }
+
 }

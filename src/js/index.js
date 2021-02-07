@@ -48,6 +48,7 @@ bookshelf.sortByPriority();
 bookshelf.insertBooks();
 })
 bookshelf.handleCategoriesListToggle();
+
 export default {
   mdb,
 };

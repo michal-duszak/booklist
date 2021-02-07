@@ -67,10 +67,7 @@ export default class Bookshelf {
       localStorage.setItem("data", JSON.stringify(this.books));
     }
       
-    if(this.filteredBooks[0].category == book.category) {
-        this.filteredBooks = this.filterByCategory(book.category);
 
-    }
     this.updateAuthors();
     this.updateCategories();
     this.counter.forEach(x => x.textContent = this.books.length);
@@ -103,7 +100,6 @@ export default class Bookshelf {
     ((b.title > a.title) ? -1 : 
     0))
     }
-
   }
   sortByAuthor() {
     if(document.querySelector('th[data-sort=author]').getAttribute('sorted')) {
@@ -153,6 +149,7 @@ export default class Bookshelf {
   }
   updateCategories() {
   document.querySelector(".categories-list").innerHTML = "";
+
     this.categories.forEach(x => {
       x.count = 0;
     })
@@ -162,8 +159,8 @@ export default class Bookshelf {
       }
       });
       this.categories.forEach(x => {
-      this.addCategoryToList(x);
-      this.handleCategoryFilter();
+        this.addCategoryToList(x);
+        this.handleCategoryFilter();
 
     })
   }
@@ -171,7 +168,6 @@ export default class Bookshelf {
     const tempAuthors = {};
     this.books.forEach(x => tempAuthors[x.author] = 1);
     this.authors = Object.keys(tempAuthors)
-    console.log(this.authors)
   }
   addCategoryToList(category) {
   const el = document.createElement('li');

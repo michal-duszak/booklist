@@ -30,13 +30,15 @@
 </navbar>
 <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action">Autorzy: <span class="counter-authors">0</span></a>
-  <a href="#" class="list-group-item list-group-item-action">Kategorie: <span class="counter-categories">0</span></a>
+  <a href="#" class="list-group-item list-group-item-action sidebar-categories">Wszystkie kategorie (<span class="counter">0</span> pozycji)</a>
+<ul class="categories-list list-group mx-3 hidden">
+</ul>
 </div>
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col" data-sort="title">Tytuł</th>
           <th scope="col" data-sort="author">Autor</th>
+          <th scope="col" data-sort="title">Tytuł</th>
           <th scope="col" data-sort="category">Kategoria</th>
           <th scope="col" data-sort="priority">Priorytet</th>
           <th scope="col">Akcje</th>
@@ -49,14 +51,14 @@
 
     <hr />
     <form class="form">
-      <div class="form-outline form__outline">
-        <input type="text" id="title" name="title" class="form-control form__title" />
-        <label class="form-label form__label" for="title">Tytuł</label>
-      </div>
-
+     
       <div class="form-outline form__outline">
         <input type="text" id="author" name="author" class="form-control form__author" />
         <label class="form-label form__label" for="author">Autor</label>
+      </div>
+ <div class="form-outline form__outline">
+        <input type="text" id="title" name="title" class="form-control form__title" />
+        <label class="form-label form__label" for="title">Tytuł</label>
       </div>
 
       <div class="form__outline">

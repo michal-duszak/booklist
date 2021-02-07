@@ -17,7 +17,6 @@ if (!localStorage.getItem('data')) {
 } else {
   initialData = JSON.parse(localStorage.getItem('data'));
 }
-// initialData = defaultData
 const bookshelf = new Bookshelf(initialData);
 const bookform = new Bookform();
 bookshelf.insertBooks();
@@ -48,7 +47,7 @@ bookshelf.clearShelf();
 bookshelf.sortByPriority();
 bookshelf.insertBooks();
 })
- 
+bookshelf.handleCategoriesListToggle();
 export default {
   mdb,
 };
